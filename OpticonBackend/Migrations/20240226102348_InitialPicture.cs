@@ -5,7 +5,7 @@
 namespace OpticonBackend.Migrations
 {
     /// <inheritdoc />
-    public partial class initialPicture : Migration
+    public partial class InitialPicture : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
