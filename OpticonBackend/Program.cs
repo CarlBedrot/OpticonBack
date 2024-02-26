@@ -1,19 +1,17 @@
 ﻿using System;
+using System.Data.Common;
 
-    public partial class Program
+public partial class Program
     {
         static void Main(string[] args)
         {
-            // Create a new Picture object
-            Picture picture = new Picture
-            {
-                Id = 1,
-                Name = "ExamplePicture",
-                Grid = "TestGrid"
-            };
+            using var context = new TopologiEditorContext();
 
-            // Output some information about the picture
-            Console.WriteLine($"Id: {picture.Id}, Name: {picture.Name}");
+            context.Database.EnsureCreated();
+            context.SaveChanges();
+            foreach (var picture in context.Pictures) {
+                Console.WriteLine($"Picture {picture.Name} has grid {picture.Grid}");
+            }
         }
     }
 

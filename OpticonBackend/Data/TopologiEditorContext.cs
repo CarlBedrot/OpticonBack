@@ -6,7 +6,7 @@ public class TopologiEditorContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlite("Data Source=yourdatabase.db");
+        optionsBuilder.UseSqlite("Data Source=SqlLite.db");
     }
 
 } 
