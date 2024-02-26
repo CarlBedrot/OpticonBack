@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace OpticonBackend.Migrations
 {
     [DbContext(typeof(TopologiEditorContext))]
-    [Migration("20240226100559_initialPicture")]
-    partial class initialPicture
+    [Migration("20240226102348_InitialPicture")]
+    partial class InitialPicture
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
