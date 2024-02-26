@@ -1,4 +1,9 @@
 OpticonBackend/obj/*
-/database.sqlite
+
 
 .fake
+OpticonBackend/OpticonBackend.db
+OpticonBackend/OpticonBackend.db-shm
+OpticonBackend/OpticonBackend.db-wal
+OpticonBackend/bin/Debug/net8.0/OpticonBackend.pdb
+OpticonBackend/bin/Debug/net8.0/OpticonBackend.dll
