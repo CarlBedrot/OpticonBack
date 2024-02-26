@@ -1,24 +1,23 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-public partial class Program
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddDbContext<TopologiEditorContext>(); // Make sure you have the correct using directive for your DbContext
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
 {
-    static void Main(string[] args)
-    {
-        // Create a new Picture object
-        var db = new TopologiEditorContext();
-
-
-
-        db.Add(new Picture
-        {
-            Name = "My first picture",
-            Grid = "Grid213",
-        });
-
-        db.SaveChanges();
-
-        var changes = db.SaveChanges();
-        Console.WriteLine(changes);
-    }
+    app.UseDeveloperExceptionPage();
 }
 
+app.UseRouting();
+
+app.MapControllers();
+
+app.Run();
