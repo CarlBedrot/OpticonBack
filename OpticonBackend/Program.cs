@@ -1,19 +1,24 @@
 ﻿using System;
 
-    public partial class Program
+public partial class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            // Create a new Picture object
-            Picture picture = new Picture
-            {
-                Id = 1,
-                Name = "ExamplePicture",
-                Grid = "TestGrid"
-            };
+        // Create a new Picture object
+        var db = new TopologiEditorContext();
 
-            // Output some information about the picture
-            Console.WriteLine($"Id: {picture.Id}, Name: {picture.Name}");
-        }
+
+
+        db.Add(new Picture
+        {
+            Name = "My first picture",
+            Grid = "Grid213",
+        });
+
+        db.SaveChanges();
+
+        var changes = db.SaveChanges();
+        Console.WriteLine(changes);
     }
+}
 
