@@ -1,24 +1,27 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using OpticonBackend.Data;
+var builder = WebApplication.CreateBuilder(args);
 
-public partial class Program
+
+builder.Services.AddControllers();
+builder.Services.AddDbContext<TopologiEditorContext>();
+
+var app = builder.Build();
+
+
+if (app.Environment.IsDevelopment())
 {
-    static void Main(string[] args)
-    {
-        // Create a new Picture object
-        var db = new TopologiEditorContext();
-
-
-
-        db.Add(new Picture
-        {
-            Name = "My first picture",
-            Grid = "Grid213",
-        });
-
-        db.SaveChanges();
-
-        var changes = db.SaveChanges();
-        Console.WriteLine(changes);
-    }
+    app.UseDeveloperExceptionPage();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();

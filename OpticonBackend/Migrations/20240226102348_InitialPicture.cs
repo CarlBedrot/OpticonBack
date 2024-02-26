@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
-
+using OpticonBackend.Data;
 #nullable disable
 
 namespace OpticonBackend.Migrations

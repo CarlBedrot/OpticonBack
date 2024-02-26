@@ -1,12 +1,16 @@
 using Microsoft.EntityFrameworkCore;
-
-public class TopologiEditorContext : DbContext
+using OpticonBackend.Models;
+namespace OpticonBackend.Data
 {
-    public DbSet<Picture> Pictures { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public class TopologiEditorContext : DbContext
     {
-        optionsBuilder.UseSqlite("Data Source=OpticonBackend.db");
-    }
+        public DbSet<Picture> Pictures { get; set; }
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=OpticonBackend.db");
+        }
+
+    }
 }
