@@ -11,7 +11,7 @@ public partial class Program
 
         db.Add(new Picture
         {
-            Name = "My first picture",
+            Name = "My test picture",
             Grid = "Grid213",
         });
 
