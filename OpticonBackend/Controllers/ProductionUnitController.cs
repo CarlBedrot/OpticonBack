@@ -19,7 +19,10 @@ namespace OpticonBackend.Controllers
         [HttpPost]
         public async Task<ActionResult<ProductionUnit>> PostProductionUnit(ProductionUnit productionUnit)
         {
+            // Add the ProductionUnit to the ProductionUnits DbSet
             _context.ProductionUnits.Add(productionUnit);
+
+            // Save the changes to the database
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetProductionUnit", new { id = productionUnit.Id }, productionUnit);

@@ -6,7 +6,7 @@ namespace OpticonBackend.Models
     {
         public string StartType { get; set; }
         public int AuxiliaryPowerAbs { get; set; }
-        public int AuxiliaryPowerRel { get; set; }
+      /*  public int AuxiliaryPowerRel { get; set; }
         public string AuxiliaryPowerForm { get; set; }
         public int MaxLoadChangeSpeed { get; set; }
         public double PreparationTimeHeat { get; set; }
@@ -20,5 +20,12 @@ namespace OpticonBackend.Models
         public string ColdStartRamp { get; set; }
         public double LoadInterval { get; set; }
         public int Performance { get; set; }
+        */
+
+        public ProductionUnit(int id, string name, string startType, int auxiliaryPowerAbs) : base(id, name)
+        {
+            StartType = startType;
+            AuxiliaryPowerAbs = auxiliaryPowerAbs;
+        }
     }
 }
