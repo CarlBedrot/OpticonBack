@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace OpticonBackend.Models
 {
@@ -10,10 +11,14 @@ namespace OpticonBackend.Models
         public string Name { get; set; }
         public string Id { get; set; }
         public string Grid { get; set; }
+
+        [JsonIgnore]
         public List<PictureAccess> PictureAccesses { get; set; }
 
-        // Parameterless constructor for EF Core
-        public Picture() { }
+        public Picture() 
+        {
+            PictureAccesses = new List<PictureAccess>();
+        }
 
         // EF Core will not use this constructor but it's here if needed for your application logic
         public Picture(string name, string grid)
@@ -21,6 +26,7 @@ namespace OpticonBackend.Models
             Name = name;
             Grid = grid;
         }
+
     }
 
 }

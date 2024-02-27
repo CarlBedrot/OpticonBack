@@ -21,6 +21,7 @@ namespace OpticonBackend.Controllers
         [HttpPost]
         public IActionResult SavePicture([FromBody] OpticonBackend.Models.Picture picture)
         {
+
             _context.Pictures.Add(picture);
             _context.SaveChanges();
 
