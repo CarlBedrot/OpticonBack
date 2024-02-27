@@ -16,9 +16,9 @@ namespace OpticonBackend.Models
 
         public Component()
         {
-            RelatedComponents = new List<Component>();
-            ComponentsRelatedTo = new List<Component>();
-            EnergyFlows = new List<Component>();
+            RelatedComponents = new List<Component>();// make nullable maybe! 
+            ComponentsRelatedTo = new List<Component>();// make nullable maybe! 
+            EnergyFlows = new List<Component>(); // make nullable maybe! 
         }
     }
 }
