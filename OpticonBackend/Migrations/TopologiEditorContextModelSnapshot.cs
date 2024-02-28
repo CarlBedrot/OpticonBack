@@ -65,8 +65,9 @@ namespace OpticonBackend.Migrations
 
             modelBuilder.Entity("OpticonBackend.Models.Picture", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Grid")
                         .IsRequired()
@@ -99,8 +100,8 @@ namespace OpticonBackend.Migrations
                     b.Property<string>("PictureAccessesUserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PicturesId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PicturesId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PictureAccessesUserId", "PicturesId");
 

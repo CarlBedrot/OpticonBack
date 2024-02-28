@@ -18,9 +18,10 @@ namespace OpticonBackend.Models
         public ICollection<Component> EnergyFlows { get; set; }
         */
 
-        public Component(int id, string name)
+        public Component(string name)
         {
-            Id = id;
+            Random random = new Random();
+            Id = random.Next(1000000, 9999999);
             Name = name;
         }
 

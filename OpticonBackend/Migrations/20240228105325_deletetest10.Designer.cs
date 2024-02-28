@@ -10,8 +10,8 @@ using OpticonBackend.Data;
 namespace OpticonBackend.Migrations
 {
     [DbContext(typeof(TopologiEditorContext))]
-    [Migration("20240227132710_ProductionUnit")]
-    partial class ProductionUnit
+    [Migration("20240228105325_deletetest10")]
+    partial class deletetest10
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,6 @@ namespace OpticonBackend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ComponentTypeName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Discriminator")
@@ -34,15 +33,7 @@ namespace OpticonBackend.Migrations
                         .HasMaxLength(21)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MeasurementUnit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -77,14 +68,19 @@ namespace OpticonBackend.Migrations
 
             modelBuilder.Entity("OpticonBackend.Models.Picture", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Grid")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PictureData")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -111,8 +107,8 @@ namespace OpticonBackend.Migrations
                     b.Property<string>("PictureAccessesUserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PicturesId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PicturesId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PictureAccessesUserId", "PicturesId");
 
@@ -137,13 +133,9 @@ namespace OpticonBackend.Migrations
 
             modelBuilder.Entity("OpticonBackend.Models.Component", b =>
                 {
-                    b.HasOne("OpticonBackend.Models.ComponentType", "ComponentType")
+                    b.HasOne("OpticonBackend.Models.ComponentType", null)
                         .WithMany("Components")
-                        .HasForeignKey("ComponentTypeName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ComponentType");
+                        .HasForeignKey("ComponentTypeName");
                 });
 
             modelBuilder.Entity("PicturePictureAccess", b =>

@@ -22,7 +22,7 @@ namespace OpticonBackend.Models
         public int Performance { get; set; }
         */
 
-        public ProductionUnit(int id, string name, string startType, int auxiliaryPowerAbs) : base(id, name)
+        public ProductionUnit(string name, string startType, int auxiliaryPowerAbs) : base(name)
         {
             StartType = startType;
             AuxiliaryPowerAbs = auxiliaryPowerAbs;

@@ -10,44 +10,14 @@ using OpticonBackend.Data;
 namespace OpticonBackend.Migrations
 {
     [DbContext(typeof(TopologiEditorContext))]
-    [Migration("20240227125016_contruct")]
-    partial class contruct
+    [Migration("20240228105434_removepicattr")]
+    partial class removepicattr
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.2");
-
-            modelBuilder.Entity("ComponentEnergyFlow", b =>
-                {
-                    b.Property<int>("ComponentId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("EnergyFlowId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ComponentId", "EnergyFlowId");
-
-                    b.HasIndex("EnergyFlowId");
-
-                    b.ToTable("ComponentEnergyFlow");
-                });
-
-            modelBuilder.Entity("ComponentRelation", b =>
-                {
-                    b.Property<int>("ComponentId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("RelatedComponentId")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("ComponentId", "RelatedComponentId");
-
-                    b.HasIndex("RelatedComponentId");
-
-                    b.ToTable("ComponentRelation");
-                });
 
             modelBuilder.Entity("OpticonBackend.Models.Component", b =>
                 {
@@ -56,7 +26,6 @@ namespace OpticonBackend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ComponentTypeName")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Discriminator")
@@ -64,15 +33,7 @@ namespace OpticonBackend.Migrations
                         .HasMaxLength(21)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("MeasurementUnit")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -107,8 +68,9 @@ namespace OpticonBackend.Migrations
 
             modelBuilder.Entity("OpticonBackend.Models.Picture", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Grid")
                         .IsRequired()
@@ -141,8 +103,8 @@ namespace OpticonBackend.Migrations
                     b.Property<string>("PictureAccessesUserId")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("PicturesId")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("PicturesId")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("PictureAccessesUserId", "PicturesId");
 
@@ -158,52 +120,6 @@ namespace OpticonBackend.Migrations
                     b.Property<int>("AuxiliaryPowerAbs")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("AuxiliaryPowerForm")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("AuxiliaryPowerRel")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ColdStartRamp")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("CoolingTimeHeat")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("CoolingTimeWarm")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("HeatStartRamp")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<double>("LoadInterval")
-                        .HasColumnType("REAL");
-
-                    b.Property<int>("MaxLoadChangeSpeed")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("MeasurePoint")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Performance")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("PreparationTimeCold")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("PreparationTimeHeat")
-                        .HasColumnType("REAL");
-
-                    b.Property<double>("PreparationTimeWarm")
-                        .HasColumnType("REAL");
-
-                    b.Property<bool>("StartRamp")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("StartType")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -211,45 +127,11 @@ namespace OpticonBackend.Migrations
                     b.HasDiscriminator().HasValue("ProductionUnit");
                 });
 
-            modelBuilder.Entity("ComponentEnergyFlow", b =>
-                {
-                    b.HasOne("OpticonBackend.Models.Component", null)
-                        .WithMany()
-                        .HasForeignKey("ComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpticonBackend.Models.Component", null)
-                        .WithMany()
-                        .HasForeignKey("EnergyFlowId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("ComponentRelation", b =>
-                {
-                    b.HasOne("OpticonBackend.Models.Component", null)
-                        .WithMany()
-                        .HasForeignKey("ComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("OpticonBackend.Models.Component", null)
-                        .WithMany()
-                        .HasForeignKey("RelatedComponentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("OpticonBackend.Models.Component", b =>
                 {
-                    b.HasOne("OpticonBackend.Models.ComponentType", "ComponentType")
+                    b.HasOne("OpticonBackend.Models.ComponentType", null)
                         .WithMany("Components")
-                        .HasForeignKey("ComponentTypeName")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("ComponentType");
+                        .HasForeignKey("ComponentTypeName");
                 });
 
             modelBuilder.Entity("PicturePictureAccess", b =>

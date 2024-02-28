@@ -9,22 +9,18 @@ namespace OpticonBackend.Models
     {
 
         public string Name { get; set; }
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Grid { get; set; }
 
         [JsonIgnore]
         public List<PictureAccess> PictureAccesses { get; set; }
 
-        public Picture() 
+        public Picture()
         {
+            Random random = new Random();
+            Id = random.Next(1000000, 9999999);
+            Grid = "blank";
             PictureAccesses = new List<PictureAccess>();
-        }
-
-        // EF Core will not use this constructor but it's here if needed for your application logic
-        public Picture(string name, string grid)
-        {
-            Name = name;
-            Grid = grid;
         }
 
     }

@@ -34,5 +34,22 @@ namespace OpticonBackend.Controllers
             var pictures = _context.Pictures.ToList();
             return Ok(pictures);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeletePicture(string id)
+        {
+            var picture = _context.Pictures.Find(id);
+            if (picture == null)
+            {
+                Console.WriteLine("Picture not found");
+                return NotFound();
+            }
+            Console.WriteLine("Picture found");
+
+            _context.Pictures.Remove(picture);
+            _context.SaveChanges();
+
+            return Ok(picture);
+        }
     }
 }
